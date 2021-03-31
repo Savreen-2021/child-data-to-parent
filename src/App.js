@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect ,useState} from 'react';
+import './App.css'
+import Users from './Users';
+const App = () =>{
+  useEffect(()=>{
+   
+  },[]);
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   const handleApiData=(data)=>{
+    saveUserData(data);
+ }
+
+ const [ allUserData , saveUserData ] = useState([]);
+
+  return(
+    <div>
+      <Users onSendData={(data)=>handleApiData(data)}/>
+  
+      <div>
+      {
+                allUserData.map((object,index)=>{
+                 return(
+                  <div >
+                     <p>{object.name} , {object.email}</p>
+                     </div>
+               
+                 )
+                })
+            }
+      </div>
+      
     </div>
-  );
+  )
 }
-
 export default App;
+
